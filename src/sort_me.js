@@ -11,7 +11,7 @@ function same(arr1, arr2) {
   }
 
   let frequencyCounter1 = {};
-  let frequencyCounter2 = {}; 
+  let frequencyCounter2 = {};
 
   for (const val of arr1) {
     frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
@@ -250,17 +250,17 @@ function gcd(x, y) {
 
 //   while (start < nums.length) {
 //     // if current window doesn't add up to the given sum then
-// 		// move the window to right
+//    // move the window to right
 //     if(total < sum && end < nums.length){
 //       total += nums[end];
-// 			end++;
+//      end++;
 //     }
 //     // if current window adds up to at least the sum given then
-// 		// we can shrink the window
+//    // we can shrink the window
 //     else if(total >= sum){
 //       minLen = Math.min(minLen, end-start);
-// 			total -= nums[start];
-// 			start++;
+//      total -= nums[start];
+//      start++;
 //     }
 //     // current total less than required total but we reach the end, need this or else we'll be in an infinite loop
 //     else {
@@ -406,8 +406,8 @@ function swapElement(arr, idx, idx2) {
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
     for (let j = i - 1; j >= 0 && arr[j] > arr[i]; j--) {
-        arr[j+1] = arr[j];
-        arr[j] = arr[i];
+      arr[j+1] = arr[j];
+      arr[j] = arr[i];
     }
   }
 
@@ -493,14 +493,14 @@ console.log(reverseNoSpecial('J$hnisagoodb%y'));
 
 
 //var fizzBuzz = function(n) {
-//  
+//
 //  const arr = [];
-//  
+//
 //    for (let i = 1; i < n; i++) {
 //        const isMultipleOfFive = i % 5 === 0;
-//        const isMultipleOfThree = i % 3 === 0; 
+//        const isMultipleOfThree = i % 3 === 0;
 //        const isMultipleOfFiveOrThree = isMultipleOfFive && isMultipleOfThree;
-//        
+//
 //        if (isMultipleOfFiveOrThree) {
 //          arr.push("FizzBuzz");
 //        } else if (isMultipleOfFive) {
@@ -511,7 +511,7 @@ console.log(reverseNoSpecial('J$hnisagoodb%y'));
 //          arr.push(i);
 //        }
 //    }
-//    
+//
 //    return arr;
 //};
 //
@@ -521,29 +521,29 @@ console.log(reverseNoSpecial('J$hnisagoodb%y'));
 //
 //var longestPalindrome = function(s) {
 //  let max = 0;
-//  
+//
 //  let longest = [0, 0];
 //  for (let i = 0; i < s.length; i++) {
 //    for (let j = i; j < s.length + 1; j++) {
 //      const length = j - i;
 //      const subStr = s.slice(i, j);
 //      const reversed = subStr.split('').reverse().join('');
-//      
+//
 //      if (subStr === reversed) {
 //       if (length > max) {
 //     console.log('_' + subStr + '_' + reversed + '_', subStr === reversed);
 //           console.log(true);
 //          longest = [i, j];
-//       
+//
 //          max = length;
 //        }
-//       
+//
 //      }
-//    }  
+//    }
 //  }
-//  
+//
 //  console.log(longest[0], longest[1])
-//  return s.slice(longest[0], longest[1]);  
+//  return s.slice(longest[0], longest[1]);
 //};
 //
 //console.log(longestPalindrome('erisbeterkayyakk'));
@@ -553,7 +553,7 @@ class Node {
   constructor(val) {
     this.val = val;
     this.next = null;
-    }
+  }
 }
 
 class SLL {
@@ -562,7 +562,7 @@ class SLL {
     this.tail = null;
     this.length = 0;
   }
-  
+
   display() {
     let curr = this.head;
     let str = '';
@@ -571,44 +571,44 @@ class SLL {
       str += `${curr.val} -> `;
       curr = curr.next;
     }
-    
+
     str += null;
-    
+
     console.log(str);
   }
-  
+
   push(val) {
     if (!this.head) {
       this.tail = this.head = new Node(val);
-      
+
       return;
     }
-    
+
     this.tail.next = new Node(val);
     this.tail = this.tail.next;
-   
-    this.length++; 
+
+    this.length++;
   }
-  
+
   pop() {
     if (!this.head) {
-      return null;  
+      return null;
     }
-    
+
     let prev;
-   let curr = prev = this.head;
-   
-   while (curr) 
-     if (!curr.next) {
-       prev.next = null;
-       this.tail = prev;
-       this.length--;
-       
-       
-       break;
-     }
-    
-    prev = curr;  
+    let curr = prev = this.head;
+
+    while (curr)
+      if (!curr.next) {
+        prev.next = null;
+        this.tail = prev;
+        this.length--;
+
+
+        break;
+      }
+
+    prev = curr;
     curr = curr.next;
   }
 }

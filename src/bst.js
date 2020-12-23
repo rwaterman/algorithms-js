@@ -1,46 +1,49 @@
-import  
+const { NodeBT } = require('./node');
 
-class BinarySearchTree {
+class TreeBS {
   constructor() {
     this.root = null;
   }
 
-
-  add(val) {
+  insert(value) {
     if (!this.root) {
-      this.root = new Node(val);
-      return;
+      this.root = new NodeBT(value);
+      return true;
     }
 
-    let curr = this.root;
-
-    while (curr) {
-      if (val === curr.value) {
+    let root = this.root;
+    while (root) {
+      if (root.value === value) {
         break;
       }
 
-      if (val < curr.value) {
-        if (curr.left) {
-          curr = curr.left;
+      if (value < root.value) {
+        if (root.left) {
+          root = root.left;
         } else {
-          curr.left = new Node(val);
+          root.left = new NodeBT(value);
           break;
         }
       } else {
-        if (curr.right) {
-          curr = curr.right;
+        if (root.right) {
+          root = root.right;
         } else {
-          curr.right = new Node(val);
+          root.right = new NodeBT(value);
           break;
         }
       }
     }
   }
+
+  search(value) {
+    // TODO
+  }
 }
 
 
-const bst = new BinarySearchTree();
-bst.add(1);
-bst.add(2);
-bst.add(3);
+// const bst = new TreeBS();
+// bst.insert(1);
+// bst.insert(2);
+// bst.insert(3);
+// bst.search(2);
 

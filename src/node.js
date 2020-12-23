@@ -1,6 +1,6 @@
 class NodeSLL {}
 class NodeDLL {}
-class NodeBST {
+class NodeBT {
   constructor(value) {
     this.value = value;
     this.left = null;
@@ -11,5 +11,5 @@ class NodeBST {
 module.exports = {
   NodeSLL,
   NodeDLL,
-  NodeBST
+  NodeBT
 }
