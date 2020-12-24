@@ -6,15 +6,16 @@ class TreeBS {
   }
 
   insert(value) {
-    if (!this.root) {
+    let root = this.root;
+
+    if (!root) {
       this.root = new NodeBT(value);
       return true;
     }
 
-    let root = this.root;
     while (root) {
       if (root.value === value) {
-        break;
+        return false;
       }
 
       if (value < root.value) {
@@ -22,28 +23,37 @@ class TreeBS {
           root = root.left;
         } else {
           root.left = new NodeBT(value);
-          break;
+          return true;
         }
       } else {
         if (root.right) {
           root = root.right;
         } else {
           root.right = new NodeBT(value);
-          break;
+          return true;
         }
       }
     }
   }
 
-  search(value) {
-    // TODO
+  find(value) {
+    let root = this.root;
+
+    while (root) {
+      if (root.value === value) {
+        return true;
+      }
+
+      if (root.value < value) {
+        root = root.left;
+      } else if (root.value > value) {
+        root = root.right;
+      } else {
+        throw new Error('Unable to compare root value');
+      }
+    }
+
+    return false;
   }
 }
-
-
-// const bst = new TreeBS();
-// bst.insert(1);
-// bst.insert(2);
-// bst.insert(3);
-// bst.search(2);
 
