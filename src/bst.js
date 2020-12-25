@@ -1,4 +1,6 @@
-const { NodeBT } = require('./node');
+const { NodeSLL, NodeBT } = require('./node');
+const { Stack } = require('./stack');
+const { Queue } = require('./queue');
 
 class TreeBS {
   constructor() {
@@ -54,6 +56,40 @@ class TreeBS {
     }
 
     return false;
+  }
+
+  visitBFS() {
+    let root = this.root;
+
+    if (!root) {
+      return null;
+    }
+
+    const queue  = new Queue();
+    queue.enqueue(root);
+    const visited = new Stack();
+
+    while (queue.size) {
+      root = queue.dequeue();
+
+      if (!root) {
+        break;
+      }
+
+      console.log(3, root.value);
+      visited.push(root.value);
+
+      if (root.left) {
+        queue.enqueue(root.left)
+      }
+
+      if (root.right) {
+        queue.enqueue(root.right);
+      }
+
+    }
+
+    return visited.toArray();
   }
 }
 

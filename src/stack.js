@@ -1,62 +1,48 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+const { NodeSLL } = require('./node.js');
 
 class Stack {
   constructor() {
-    this.last = null;
-    this.length = 0;
+    this.top = null;
+    this.size = 0;
   }
 
-  push(val) {
-
-    if (!this.last) {
-      this.last = new Node(val);
+  push(value) {
+    if (!this.top) {
+      this.top = new NodeSLL(value);
     } else {
-      const last = new Node(val);
-      last.next = this.last;
-      this.last = last;
+      const top = new NodeSLL(value);
+      top.next = this.top;
+      this.top = top;
     }
 
-    this.length++;
+    this.size++;
   }
 
   pop() {
-    if (!this.last) {
+    if (!this.top) {
       return null;
     }
 
-    const val = this.last.val;
-    this.last = this.last.next;
-
+    const value = this.top.value;
+    this.top = this.top.next;
     this.size--;
-    return val;
+
+    return value;
   }
 
-  display() {
-    let curr = this.last;
-    while (curr) {
-      console.log(curr.val);
-      curr = curr.next;
+  toArray() {
+    let current = this.top;
+    const arr = [];
+
+    while (current) {
+      arr.push(current.value);
+      current = current.next;
     }
+
+    return arr.reverse();
   }
 }
 
-
-
-
-
-(() => {
-  const stack = new Stack();
-
-  stack.push(1);
-  stack.push(2);
-  stack.push(3);
-
-  stack.pop();
-
-  stack.display();
-})();
+module.exports = {
+  Stack
+}
