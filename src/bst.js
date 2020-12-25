@@ -76,7 +76,6 @@ class TreeBS {
         break;
       }
 
-      console.log(3, root.value);
       visited.push(root.value);
 
       if (root.left) {
@@ -86,7 +85,6 @@ class TreeBS {
       if (root.right) {
         queue.enqueue(root.right);
       }
-
     }
 
     return visited.toArray();

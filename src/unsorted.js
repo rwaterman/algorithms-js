@@ -490,143 +490,52 @@ function reverseNoSpecial(str) {
 
 console.log(reverseNoSpecial('J$hnisagoodb%y'));
 
+function fizzBuzz(n) {
+  const arr = [];
 
+  for (let i = 1; i < n; i++) {
+    const isMultipleOfFive = i % 5 === 0;
+    const isMultipleOfThree = i % 3 === 0;
+    const isMultipleOfFiveOrThree = isMultipleOfFive && isMultipleOfThree;
 
-//var fizzBuzz = function(n) {
-//
-//  const arr = [];
-//
-//    for (let i = 1; i < n; i++) {
-//        const isMultipleOfFive = i % 5 === 0;
-//        const isMultipleOfThree = i % 3 === 0;
-//        const isMultipleOfFiveOrThree = isMultipleOfFive && isMultipleOfThree;
-//
-//        if (isMultipleOfFiveOrThree) {
-//          arr.push("FizzBuzz");
-//        } else if (isMultipleOfFive) {
-//          arr.push("Buzz")
-//        } else if (isMultipleOfThree) {
-//          arr.push("Fizz");
-//        } else {
-//          arr.push(i);
-//        }
-//    }
-//
-//    return arr;
-//};
-//
-//
-//console.log(fizzBuzz(100));
-//
-//
-//var longestPalindrome = function(s) {
-//  let max = 0;
-//
-//  let longest = [0, 0];
-//  for (let i = 0; i < s.length; i++) {
-//    for (let j = i; j < s.length + 1; j++) {
-//      const length = j - i;
-//      const subStr = s.slice(i, j);
-//      const reversed = subStr.split('').reverse().join('');
-//
-//      if (subStr === reversed) {
-//       if (length > max) {
-//     console.log('_' + subStr + '_' + reversed + '_', subStr === reversed);
-//           console.log(true);
-//          longest = [i, j];
-//
-//          max = length;
-//        }
-//
-//      }
-//    }
-//  }
-//
-//  console.log(longest[0], longest[1])
-//  return s.slice(longest[0], longest[1]);
-//};
-//
-//console.log(longestPalindrome('erisbeterkayyakk'));
-//console.log('finished');
-
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
-
-class SLL {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  display() {
-    let curr = this.head;
-    let str = '';
-    while (curr) {
-      console.log(curr.val);
-      str += `${curr.val} -> `;
-      curr = curr.next;
+    if (isMultipleOfFiveOrThree) {
+      arr.push("FizzBuzz");
+    } else if (isMultipleOfFive) {
+      arr.push("Buzz")
+    } else if (isMultipleOfThree) {
+      arr.push("Fizz");
+    } else {
+      arr.push(i);
     }
-
-    str += null;
-
-    console.log(str);
   }
 
-  push(val) {
-    if (!this.head) {
-      this.tail = this.head = new Node(val);
+  return arr;
+};
 
-      return;
-    }
+const longestPalindrome = function(s) {
+  let max = 0;
 
-    this.tail.next = new Node(val);
-    this.tail = this.tail.next;
+  let longest = [0, 0];
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i; j < s.length + 1; j++) {
+      const length = j - i;
+      const subStr = s.slice(i, j);
+      const reversed = subStr.split('').reverse().join('');
 
-    this.length++;
-  }
+      if (subStr === reversed) {
+       if (length > max) {
+     console.log('_' + subStr + '_' + reversed + '_', subStr === reversed);
+           console.log(true);
+          longest = [i, j];
 
-  pop() {
-    if (!this.head) {
-      return null;
-    }
+          max = length;
+        }
 
-    let prev;
-    let curr = prev = this.head;
-
-    while (curr)
-      if (!curr.next) {
-        prev.next = null;
-        this.tail = prev;
-        this.length--;
-
-
-        break;
       }
-
-    prev = curr;
-    curr = curr.next;
+    }
   }
-}
 
-const list = new SLL();
-
-list.push(1);
-list.push(2);
-list.push(3);
-console.log(list.display());
-list.pop();
-
-list.pop();
-
-list.pop();
-
-//list.pop();
-
-//list.pop();
-
-console.log(list.display());
+  console.log(longest[0], longest[1])
+  return s.slice(longest[0], longest[1]);
+};
+//console.log(longestPalindrome('erisbeterkayyakk'));
