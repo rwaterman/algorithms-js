@@ -32,14 +32,15 @@ class Stack {
 
   toArray() {
     let current = this.top;
-    const arr = [];
+    const arr = Array(this.size);
+    let counter = this.size - 1;
 
     while (current) {
-      arr.push(current.value);
+      arr[counter--] = current.value;
       current = current.next;
     }
 
-    return arr.reverse();
+    return arr;
   }
 }
 

@@ -89,5 +89,22 @@ class TreeBS {
 
     return visited.toArray();
   }
-}
 
+  visitDFSPreOrder() {
+    const visited = new Stack();
+    const traverse = (root) => {
+      visited.push(root.value);
+
+      if (root.left) {
+        traverse(root.left);
+      }
+
+      if (root.right) {
+        traverse(root.right);
+      }
+
+    }
+
+    traverse(this.root);
+    return visited.toArray();
+  }
