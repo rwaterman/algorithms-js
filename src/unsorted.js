@@ -100,14 +100,14 @@ function sumZero(arr) {
   }
 }
 
-// O(log(N))
+// O(log(N)) array value search
 function search(arr, val) {
   let min = 0;
-  let max = array.length - 1;
+  let max = arr.length - 1;
 
   while (min <= max) {
     let middle = Math.floor((min + max) / 2);
-    let currentElement = array[middle];
+    let currentElement = arr[middle];
 
     if (val > currentElement) {
       min = middle + 1;
@@ -164,6 +164,44 @@ function areThereDuplicates(...args) {
   return false;
 }
 
+
+// Two sum - O(N^2)
+const twoSum = (arr, target) => {
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        result.push(i);
+        result.push(j);
+      }
+    }
+  }
+
+  return result;
+}
+// Merges/Consolidates tuples in overlapping ranges
+function mergeIntervals(intervals) {
+  if (!intervals?.length) {
+    return [];
+  }
+
+  const sorted = intervals.sort((a, b) => a - b);
+
+  let temp = [];
+  for (let i = 0; i < intervals.length; i++) {
+    for (let j = i + 1; j < intervals.length - 1; j++) {
+
+      if (intervals[i + j][0] <= intervals[i][1]) {
+        sorted.splice(i, 2, [intervals[i][0], intervals[j][1]]);
+      }
+    }
+  }
+
+  return sorted;
+};
+
+// O(N)
 // Multiple pointers
 function averagePair(arr, targetAvg) {
   let left = 0;
@@ -242,34 +280,34 @@ function gcd(x, y) {
   return absX;
 }
 
-// function minSubArrayLen(nums, sum) {
-//   let total = 0;
-//   let start = 0;
-//   let end = 0;
-//   let minLen = Infinity;
+function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
 
-//   while (start < nums.length) {
-//     // if current window doesn't add up to the given sum then
-//    // move the window to right
-//     if(total < sum && end < nums.length){
-//       total += nums[end];
-//      end++;
-//     }
-//     // if current window adds up to at least the sum given then
-//    // we can shrink the window
-//     else if(total >= sum){
-//       minLen = Math.min(minLen, end-start);
-//      total -= nums[start];
-//      start++;
-//     }
-//     // current total less than required total but we reach the end, need this or else we'll be in an infinite loop
-//     else {
-//       break;
-//     }
-//   }
+  while (start < nums.length) {
+    // if current window doesn't add up to the given sum then
+   // move the window to right
+    if(total < sum && end < nums.length){
+      total += nums[end];
+     end++;
+    }
+    // if current window adds up to at least the sum given then
+   // we can shrink the window
+    else if(total >= sum){
+      minLen = Math.min(minLen, end-start);
+     total -= nums[start];
+     start++;
+    }
+    // current total less than required total but we reach the end, need this or else we'll be in an infinite loop
+    else {
+      break;
+    }
+  }
 
-//   return minLen === Infinity ? 0 : minLen;
-// }
+  return minLen === Infinity ? 0 : minLen;
+}
 
 function findLongestSubstring(str) {
   let longest = 0;
@@ -288,7 +326,6 @@ function findLongestSubstring(str) {
   }
   return longest;
 }
-
 // cl(findLongestSubstring('thecatinthehat'));
 
 function linearSearch(arr, val) {
@@ -327,7 +364,6 @@ function stringSearch(arr, substr) {
   let match = false;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < substr.length; j++) {
-      console.log(arr[i], substr[j]);
       if (arr[i + j] !== substr[j]) {
         break;
       }
@@ -338,10 +374,9 @@ function stringSearch(arr, substr) {
     }
   }
 
-  return count;
+  return match;
 }
-
-// console.log(stringSearch('fooolol', 'lol'));
+console.log(stringSearch('fooololl', 'lol'));
 
 function bubbleSort(arr) {
   let swapped;
@@ -388,7 +423,6 @@ function selectionSort(arr) {
 
   return arr;
 }
-
 // console.log(selectionSort([4, 20, 2, 3, 1, 17, 5, 7, 10, 8]));
 
 
@@ -413,17 +447,11 @@ function insertionSort(arr) {
 
   return arr;
 }
-
-
 // console.log(insertionSort(createNElementArray(1000000)));
-
-
 // const data = Array.apply(1, { length: 100000 });
 // console.log(data);
-
 // const data2 = Array.apply(null, { length: 100000 }).map(Function.call, Math.random);
 // console.log(data2);
-
 // bubbleSort(data2);
 
 function merge(arr, arr2) {
@@ -466,9 +494,7 @@ function mergeSort(arr) {
 
   return merge(left, right);
 }
-
 // console.log(mergeSort(Array.apply(null, { length: 100000 }).map(Function.call, Math.random)));
-
 
 
 // GEEKS FOR GEEKS practice
@@ -486,48 +512,21 @@ function reverseNoSpecial(str) {
 
   return reversed.join('');
 }
+// console.log(reverseNoSpecial('J$hnisagoodb%y'));
 
-
-console.log(reverseNoSpecial('J$hnisagoodb%y'));
-
-function fizzBuzz(n) {
-  const arr = [];
-
-  for (let i = 1; i < n; i++) {
-    const isMultipleOfFive = i % 5 === 0;
-    const isMultipleOfThree = i % 3 === 0;
-    const isMultipleOfFiveOrThree = isMultipleOfFive && isMultipleOfThree;
-
-    if (isMultipleOfFiveOrThree) {
-      arr.push("FizzBuzz");
-    } else if (isMultipleOfFive) {
-      arr.push("Buzz")
-    } else if (isMultipleOfThree) {
-      arr.push("Fizz");
-    } else {
-      arr.push(i);
-    }
-  }
-
-  return arr;
-};
-
-const longestPalindrome = function(s) {
+const findLongestPalindrome = function(str) {
   let max = 0;
 
   let longest = [0, 0];
-  for (let i = 0; i < s.length; i++) {
-    for (let j = i; j < s.length + 1; j++) {
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i; j < str.length + 1; j++) {
       const length = j - i;
-      const subStr = s.slice(i, j);
+      const subStr = str.slice(i, j);
       const reversed = subStr.split('').reverse().join('');
 
       if (subStr === reversed) {
        if (length > max) {
-     console.log('_' + subStr + '_' + reversed + '_', subStr === reversed);
-           console.log(true);
           longest = [i, j];
-
           max = length;
         }
 
@@ -535,7 +534,6 @@ const longestPalindrome = function(s) {
     }
   }
 
-  console.log(longest[0], longest[1])
-  return s.slice(longest[0], longest[1]);
+  return str.slice(longest[0], longest[1]);
 };
-//console.log(longestPalindrome('erisbeterkayyakk'));
+// console.log(longestPalindrome('erisbeterkayyakk'));
